@@ -1,9 +1,10 @@
-﻿using PostcodeApi.Domain;
+﻿using System.Threading.Tasks;
+using PostcodeApi.Domain;
 
 namespace PostcodeApi.Application
 {
     public interface IPostcodeIoApiWrapper
     {
-        PostcodeResponse Get();
+        Task<PostcodeResponse> Get();
     }
 }

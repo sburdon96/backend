@@ -10,6 +10,6 @@ namespace PostcodeApi.Application
     {
         Task<PostcodeResponse> GetPostcodeLocation(string postcode);
 
-        Task<PostcodesResponse> GetPostcodeLocation(PostcodeList postcodes);
+        Task<PostcodesResponse> GetMultiplePostcodeLocation(PostcodeList postcodes);
     }
 }

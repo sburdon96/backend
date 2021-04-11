@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -68,12 +69,26 @@ namespace PostcodeApi.Test
         [Test]
         public void WhenResponseIsSuccessForMultiplePostcodes_ReturnPostcodeResponse()
         {
-            var expectedResponse = new PostcodeResponse
+            var expectedResponse = new PostcodesResponse
             {
-                Result = new LocationData
+                Result = new List<PostcodeResponse>
                 {
-                    Latitude = 1,
-                    Longitude = 1
+                    new PostcodeResponse
+                    {
+                        Result = new LocationData
+                        {
+                            Latitude = 1,
+                            Longitude = 1
+                        }
+                    },
+                    new PostcodeResponse
+                    {
+                        Result = new LocationData
+                        {
+                            Latitude = 2,
+                            Longitude = 2
+                        }
+                    }
                 }
             };
 
@@ -84,11 +99,11 @@ namespace PostcodeApi.Test
             httpResponse.Content = new StringContent(json);
 
             var mockMapper = new Mock<IPostcodeIoApiWrapper>();
-            mockMapper.Setup(x => x.Get(It.IsAny<string>())).ReturnsAsync(httpResponse);
+            mockMapper.Setup(x => x.Post(It.IsAny<PostcodeList>())).ReturnsAsync(httpResponse);
 
             var sut = new PostcodeService(mockMapper.Object);
 
-            var result = sut.GetPostcodeLocation("NG15AD");
+            var result = sut.GetMultiplePostcodeLocation(new PostcodeList());
 
             using (new AssertionScope())
             {

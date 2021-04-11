@@ -32,6 +32,20 @@ namespace PostcodeApi.Application
             return JsonConvert.DeserializeObject<PostcodeResponse>(apiResponse.Content.ReadAsStringAsync().Result);
         }
 
+        public async Task<PostcodesResponse> GetMultiplePostcodeLocation(PostcodeList postcodes)
+        {
+            var apiResponse = await _wrapper.Post(postcodes);
 
+            if (!apiResponse.IsSuccessStatusCode)
+            {
+                var failResponse = JsonConvert.DeserializeObject<PostcodeFailResponse>(apiResponse.Content.ReadAsStringAsync()
+                    .Result);
+
+                throw new HttpStatusCodeException(failResponse);
+            }
+
+            return JsonConvert.DeserializeObject<PostcodesResponse>(apiResponse.Content.ReadAsStringAsync()
+                .Result);
+        }
     }
 }

@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using PostcodeApi.Application;
 using PostcodeApi.Application.Exceptions;
+using PostcodeApi.Domain;
 
 namespace PostcodeApi.Controllers
 {
@@ -23,6 +24,19 @@ namespace PostcodeApi.Controllers
             try
             {
                 return Ok(await _postcodeService.GetPostcodeLocation(postcode));
+            }
+            catch (HttpStatusCodeException ex)
+            {
+                return StatusCode(ex.FailResponse.Status, ex.FailResponse);
+            }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Post([FromBody]PostcodeList postcodes)
+        {
+            try
+            {
+                return Ok(await _postcodeService.GetMultiplePostcodeLocation(postcodes));
             }
             catch (HttpStatusCodeException ex)
             {

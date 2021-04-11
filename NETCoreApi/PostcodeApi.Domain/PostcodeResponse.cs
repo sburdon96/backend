@@ -5,7 +5,10 @@ namespace PostcodeApi.Domain
 {
     public class PostcodeResponse
     {
+        [JsonProperty("query")]
+        public string Postcode { get; set; }
+
         [JsonProperty("result")]
-        public LocationData Result { get; set; }
+        public LocationData Location { get; set; }
     }
 }

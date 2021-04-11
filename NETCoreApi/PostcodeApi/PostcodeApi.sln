@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PostcodeApi", "PostcodeApi.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PostcodeApi.Test", "..\PostcodeApi.Test\PostcodeApi.Test.csproj", "{843ED687-3136-4C89-B3D2-2C17653FDD43}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PostcodeApi.Domain", "..\PostcodeApi.Domain\PostcodeApi.Domain.csproj", "{7F14110B-B534-4D97-B382-3ED906BE5AC2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PostcodeApi.Application", "..\PostcodeApi.Application\PostcodeApi.Application.csproj", "{1DE325D2-2CEA-4CB7-A0A8-CA78605116B2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{843ED687-3136-4C89-B3D2-2C17653FDD43}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{843ED687-3136-4C89-B3D2-2C17653FDD43}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{843ED687-3136-4C89-B3D2-2C17653FDD43}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F14110B-B534-4D97-B382-3ED906BE5AC2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F14110B-B534-4D97-B382-3ED906BE5AC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F14110B-B534-4D97-B382-3ED906BE5AC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F14110B-B534-4D97-B382-3ED906BE5AC2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1DE325D2-2CEA-4CB7-A0A8-CA78605116B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1DE325D2-2CEA-4CB7-A0A8-CA78605116B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1DE325D2-2CEA-4CB7-A0A8-CA78605116B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1DE325D2-2CEA-4CB7-A0A8-CA78605116B2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

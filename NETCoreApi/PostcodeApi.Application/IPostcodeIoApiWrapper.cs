@@ -7,5 +7,7 @@ namespace PostcodeApi.Application
     public interface IPostcodeIoApiWrapper
     {
         Task<HttpResponseMessage> Get(string postcode);
+
+        Task<HttpResponseMessage> Post(PostcodeList postcodes);
     }
 }

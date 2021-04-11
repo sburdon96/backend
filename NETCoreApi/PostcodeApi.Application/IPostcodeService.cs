@@ -9,5 +9,7 @@ namespace PostcodeApi.Application
     public interface IPostcodeService
     {
         Task<PostcodeResponse> GetPostcodeLocation(string postcode);
+
+        Task<PostcodesResponse> GetPostcodeLocation(PostcodeList postcodes);
     }
 }

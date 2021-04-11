@@ -16,7 +16,7 @@ namespace PostcodeApi.Test
     public class Tests
     {
         [Test]
-        public void WhenResponseIsSuccess_ReturnPostcodeResponse()
+        public void WhenResponseIsSuccessForPostcode_ReturnPostcodeResponse()
         {
             var expectedResponse = new PostcodeResponse
             {
@@ -62,6 +62,37 @@ namespace PostcodeApi.Test
             using (new AssertionScope())
             {
                 action.Should().Throw<HttpStatusCodeException>();
+            }
+        }
+
+        [Test]
+        public void WhenResponseIsSuccessForMultiplePostcodes_ReturnPostcodeResponse()
+        {
+            var expectedResponse = new PostcodeResponse
+            {
+                Result = new LocationData
+                {
+                    Latitude = 1,
+                    Longitude = 1
+                }
+            };
+
+            var json = JsonConvert.SerializeObject(expectedResponse);
+
+            var httpResponse = new HttpResponseMessage();
+            httpResponse.StatusCode = HttpStatusCode.OK;
+            httpResponse.Content = new StringContent(json);
+
+            var mockMapper = new Mock<IPostcodeIoApiWrapper>();
+            mockMapper.Setup(x => x.Get(It.IsAny<string>())).ReturnsAsync(httpResponse);
+
+            var sut = new PostcodeService(mockMapper.Object);
+
+            var result = sut.GetPostcodeLocation("NG15AD");
+
+            using (new AssertionScope())
+            {
+                result.Result.Should().BeEquivalentTo(expectedResponse);
             }
         }
     }

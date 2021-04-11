@@ -23,7 +23,9 @@ namespace PostcodeApi.Controllers
         {
             try
             {
-                return Ok(await _postcodeService.GetPostcodeLocation(postcode));
+                var response = await _postcodeService.GetPostcodeLocation(postcode);
+                response.Postcode = postcode;
+                return Ok(response);
             }
             catch (HttpStatusCodeException ex)
             {

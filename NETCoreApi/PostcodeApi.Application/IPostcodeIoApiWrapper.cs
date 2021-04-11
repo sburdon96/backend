@@ -1,10 +1,11 @@
-﻿using System.Threading.Tasks;
+﻿using System.Net.Http;
+using System.Threading.Tasks;
 using PostcodeApi.Domain;
 
 namespace PostcodeApi.Application
 {
     public interface IPostcodeIoApiWrapper
     {
-        Task<PostcodeResponse> Get(string postcode);
+        Task<HttpResponseMessage> Get(string postcode);
     }
 }

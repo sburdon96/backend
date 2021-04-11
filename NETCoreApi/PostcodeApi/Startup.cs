@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using PostcodeApi.Application;
 
 namespace PostcodeApi
 {
@@ -26,6 +27,9 @@ namespace PostcodeApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
+            services.AddScoped<IPostcodeService, PostcodeService>();
+            services.AddScoped<IPostcodeIoApiWrapper, PostcodeIoApiWrapper>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

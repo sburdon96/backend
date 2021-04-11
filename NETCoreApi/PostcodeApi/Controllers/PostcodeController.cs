@@ -8,11 +8,17 @@ namespace PostcodeApi.Controllers
     [ApiController]
     public class PostcodeController : ControllerBase
     {
+        private readonly IPostcodeService _postcodeService;
+
+        public PostcodeController(IPostcodeService postcodeService)
+        {
+            _postcodeService = postcodeService;
+        }
+
         [HttpGet("{postcode}")]
         public async Task<IActionResult> Get(string postcode)
         {
-            var wrapper = new PostcodeIoApiWrapper();
-            return Ok(await wrapper.Get(postcode));
+            return Ok(await _postcodeService.GetPostcodeLocation(postcode));
         }
     }
 }

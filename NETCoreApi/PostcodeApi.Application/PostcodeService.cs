@@ -20,6 +20,11 @@ namespace PostcodeApi.Application
         {
             var apiResponse = await _wrapper.Get(postcode);
 
+            if (!apiResponse.IsSuccessStatusCode)
+            {
+                throw new Exception();
+            }
+
             return JsonConvert.DeserializeObject<PostcodeResponse>(apiResponse.Content.ReadAsStringAsync().Result);
         }
     }

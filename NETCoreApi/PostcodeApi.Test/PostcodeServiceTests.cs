@@ -1,6 +1,7 @@
 using System;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 using FluentAssertions;
 using FluentAssertions.Execution;
 using Moq;
@@ -55,7 +56,7 @@ namespace PostcodeApi.Test
 
             var sut = new PostcodeService(mockMapper.Object);
 
-            Action action = async () => await sut.GetPostcodeLocation("IIIIII");
+            Func<Task> action = async () => await sut.GetPostcodeLocation("IIIIII");
 
             using (new AssertionScope())
             {

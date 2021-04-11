@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using PostcodeApi.Application;
 
@@ -18,7 +19,14 @@ namespace PostcodeApi.Controllers
         [HttpGet("{postcode}")]
         public async Task<IActionResult> Get(string postcode)
         {
-            return Ok(await _postcodeService.GetPostcodeLocation(postcode));
+            try
+            {
+                return Ok(await _postcodeService.GetPostcodeLocation(postcode));
+            }
+            catch (Exception ex)
+            {
+                return NotFound();
+            }
         }
     }
 }

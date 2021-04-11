@@ -1,3 +1,4 @@
+using System;
 using System.Net;
 using System.Net.Http;
 using FluentAssertions;
@@ -40,6 +41,25 @@ namespace PostcodeApi.Test
             using (new AssertionScope())
             {
                 result.Result.Should().BeEquivalentTo(expectedResponse);
+            }
+        }
+
+        [Test]
+        public void WhenResponseIs404_ThrowException()
+        {
+            var httpResponse = new HttpResponseMessage();
+            httpResponse.StatusCode = HttpStatusCode.NotFound;
+
+            var mockMapper = new Mock<IPostcodeIoApiWrapper>();
+            mockMapper.Setup(x => x.Get(It.IsAny<string>())).ReturnsAsync(httpResponse);
+
+            var sut = new PostcodeService(mockMapper.Object);
+
+            Action action = async () => await sut.GetPostcodeLocation("IIIIII");
+
+            using (new AssertionScope())
+            {
+                action.Should().Throw<Exception>();
             }
         }
     }

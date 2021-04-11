@@ -21,7 +21,7 @@ namespace PostcodeApi.Test
         {
             var expectedResponse = new PostcodeResponse
             {
-                Result = new LocationData
+                Location = new LocationData
                 {
                     Latitude = 1,
                     Longitude = 1
@@ -75,7 +75,7 @@ namespace PostcodeApi.Test
                 {
                     new PostcodeResponse
                     {
-                        Result = new LocationData
+                        Location = new LocationData
                         {
                             Latitude = 1,
                             Longitude = 1
@@ -83,7 +83,7 @@ namespace PostcodeApi.Test
                     },
                     new PostcodeResponse
                     {
-                        Result = new LocationData
+                        Location = new LocationData
                         {
                             Latitude = 2,
                             Longitude = 2

@@ -19,7 +19,7 @@
     },
     "PostcodeApi": {
       "commandName": "Project",
-      "launchBrowser": true,
+      "launchBrowser": false,
       "launchUrl": "postcodeapi",
       "applicationUrl": "http://localhost:3000",
       "environmentVariables": {

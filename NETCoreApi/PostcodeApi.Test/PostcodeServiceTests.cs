@@ -48,10 +48,18 @@ namespace PostcodeApi.Test
         }
 
         [Test]
-        public void WhenResponseIsNotSuccess_ThrowException()
+        public void WhenResponseIsNotSuccessForGet_ThrowException()
         {
+            var expectedResponse = new PostcodeFailResponse()
+            {
+               Status = 404,
+               Error = "Error"
+            };
+            var json = JsonConvert.SerializeObject(expectedResponse);
+
             var httpResponse = new HttpResponseMessage();
             httpResponse.StatusCode = HttpStatusCode.NotFound;
+            httpResponse.Content = new StringContent(json);
 
             var mockMapper = new Mock<IPostcodeIoApiWrapper>();
             mockMapper.Setup(x => x.Get(It.IsAny<string>())).ReturnsAsync(httpResponse);
@@ -108,6 +116,33 @@ namespace PostcodeApi.Test
             using (new AssertionScope())
             {
                 result.Result.Should().BeEquivalentTo(expectedResponse);
+            }
+        }
+
+        [Test]
+        public void WhenResponseIsNotSuccessForPost_ThrowException()
+        {
+            var expectedResponse = new PostcodeFailResponse()
+            {
+                Status = 404,
+                Error = "Error"
+            };
+            var json = JsonConvert.SerializeObject(expectedResponse);
+
+            var httpResponse = new HttpResponseMessage();
+            httpResponse.StatusCode = HttpStatusCode.NotFound;
+            httpResponse.Content = new StringContent(json);
+
+            var mockMapper = new Mock<IPostcodeIoApiWrapper>();
+            mockMapper.Setup(x => x.Post(It.IsAny<PostcodeList>())).ReturnsAsync(httpResponse);
+
+            var sut = new PostcodeService(mockMapper.Object);
+
+            Func<Task> action = async () => await sut.GetMultiplePostcodeLocation(new PostcodeList());
+
+            using (new AssertionScope())
+            {
+                action.Should().Throw<HttpStatusCodeException>();
             }
         }
     }

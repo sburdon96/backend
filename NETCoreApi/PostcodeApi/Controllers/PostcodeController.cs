@@ -8,11 +8,11 @@ namespace PostcodeApi.Controllers
     [ApiController]
     public class PostcodeController : ControllerBase
     {
-        [HttpGet]
-        public async Task<IActionResult> Get()
+        [HttpGet("{postcode}")]
+        public async Task<IActionResult> Get(string postcode)
         {
             var wrapper = new PostcodeIoApiWrapper();
-            return Ok(await wrapper.Get());
+            return Ok(await wrapper.Get(postcode));
         }
     }
 }

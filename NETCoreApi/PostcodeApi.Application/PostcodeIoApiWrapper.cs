@@ -7,11 +7,11 @@ namespace PostcodeApi.Application
 {
     public class PostcodeIoApiWrapper : IPostcodeIoApiWrapper
     {
-        public async Task<PostcodeResponse> Get()
+        public async Task<PostcodeResponse> Get(string postcode)
         {
             using (var client = new HttpClient())
             {
-                var response = await client.GetAsync("https://api.postcodes.io/postcodes/ng15ad");
+                var response = await client.GetAsync($"https://api.postcodes.io/postcodes/{postcode}");
 
                 var result = JsonConvert.DeserializeObject<PostcodeResponse>(response.Content.ReadAsStringAsync()
                     .Result);

@@ -5,6 +5,6 @@ namespace PostcodeApi.Application
 {
     public interface IPostcodeIoApiWrapper
     {
-        Task<PostcodeResponse> Get();
+        Task<PostcodeResponse> Get(string postcode);
     }
 }

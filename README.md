@@ -1,3 +1,16 @@
+# Example api calls
+GET: http://localhost:3000/api/postcode/NG15AD
+POST: http://localhost:3000/api/postcode/
+Body: 
+{
+  "postcodes": ["NG15AD", "NG14FW"]
+}
+
+
+
+
+
+
 # A Millions Ads Backend Tech Test
 This is a simple skeleton api dealing with data on postcode inputs. We've provided this knowing your time is precious, and we strongly suggest that you use this as your starting point, and complete as much as you can within the agreed time limit. However you may set up the project differently and/or use a different language or framework if you feel that helps to display your skills better.
 

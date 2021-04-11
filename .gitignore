@@ -2,3 +2,5 @@ node_modules/**
 dist/**
 /NETCoreApi/PostcodeApi/obj
 /NETCoreApi/PostcodeApi/bin/Debug/netcoreapp3.1
+/NETCoreApi/PostcodeApi.Test/bin/Debug/netcoreapp3.1
+/NETCoreApi/PostcodeApi.Test/obj

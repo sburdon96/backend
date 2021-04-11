@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using PostcodeApi.Application;
+using PostcodeApi.Application.Exceptions;
 
 namespace PostcodeApi.Controllers
 {
@@ -23,9 +24,9 @@ namespace PostcodeApi.Controllers
             {
                 return Ok(await _postcodeService.GetPostcodeLocation(postcode));
             }
-            catch (Exception ex)
+            catch (HttpStatusCodeException ex)
             {
-                return NotFound();
+                return StatusCode(ex.FailResponse.Status, ex.FailResponse);
             }
         }
     }

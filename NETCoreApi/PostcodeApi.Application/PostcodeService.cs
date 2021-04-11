@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using PostcodeApi.Application.Exceptions;
 using PostcodeApi.Domain;
 
 namespace PostcodeApi.Application
@@ -22,7 +23,10 @@ namespace PostcodeApi.Application
 
             if (!apiResponse.IsSuccessStatusCode)
             {
-                throw new Exception();
+                var failResponse = JsonConvert.DeserializeObject<PostcodeFailResponse>(apiResponse.Content.ReadAsStringAsync()
+                    .Result);
+
+                throw new HttpStatusCodeException(failResponse);
             }
 
             return JsonConvert.DeserializeObject<PostcodeResponse>(apiResponse.Content.ReadAsStringAsync().Result);

@@ -8,6 +8,7 @@ using Moq;
 using Newtonsoft.Json;
 using NUnit.Framework;
 using PostcodeApi.Application;
+using PostcodeApi.Application.Exceptions;
 using PostcodeApi.Domain;
 
 namespace PostcodeApi.Test
@@ -46,7 +47,7 @@ namespace PostcodeApi.Test
         }
 
         [Test]
-        public void WhenResponseIs404_ThrowException()
+        public void WhenResponseIsNotSuccess_ThrowException()
         {
             var httpResponse = new HttpResponseMessage();
             httpResponse.StatusCode = HttpStatusCode.NotFound;
@@ -60,7 +61,7 @@ namespace PostcodeApi.Test
 
             using (new AssertionScope())
             {
-                action.Should().Throw<Exception>();
+                action.Should().Throw<HttpStatusCodeException>();
             }
         }
     }

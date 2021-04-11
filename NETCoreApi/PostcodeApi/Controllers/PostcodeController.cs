@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using PostcodeApi.Application;
 
 namespace PostcodeApi.Controllers
 {
@@ -11,9 +8,11 @@ namespace PostcodeApi.Controllers
     [ApiController]
     public class PostcodeController : ControllerBase
     {
+        [HttpGet]
         public async Task<IActionResult> Get()
         {
-            return Ok();
+            var wrapper = new PostcodeIoApiWrapper();
+            return Ok(await wrapper.Get());
         }
     }
 }

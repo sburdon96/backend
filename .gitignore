@@ -6,3 +6,5 @@ dist/**
 /NETCoreApi/PostcodeApi.Test/obj
 /NETCoreApi/PostcodeApi.Application/obj
 /NETCoreApi/PostcodeApi.Domain/obj
+/NETCoreApi/PostcodeApi.Application/bin/Debug/netstandard2.0
+/NETCoreApi/PostcodeApi.Domain/bin/Debug/netstandard2.0
